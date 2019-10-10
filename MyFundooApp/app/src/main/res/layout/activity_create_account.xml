@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back1"
+    tools:context=".CreateAccountActivity">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:layout_centerInParent="true"
+        android:background="@color/blue"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/blue"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/logo1"></ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/create_act"
+                android:textColor="#fff"
+                android:textSize="18sp"></TextView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:paddingStart="50dp"
+                android:paddingEnd="30dp">
+
+                <EditText
+                    android:id="@+id/accountNameET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Name"
+                    android:inputType="textPersonName"
+                    android:paddingBottom="10dp"
+                    android:textColor="#f0f7f4"
+                    android:textSize="14sp"></EditText>
+
+                <EditText
+                    android:id="@+id/accountEmailET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Email-Id"
+                    android:inputType="textEmailAddress"
+                    android:paddingBottom="10dp"
+                    android:textColor="#f0f7f4"
+                    android:textSize="14sp"></EditText>
+
+                <EditText
+                    android:id="@+id/accountPasswordET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Enter Password"
+                    android:inputType="textPassword"
+                    android:paddingBottom="10dp"
+                    android:textColor="#f0f7f4"
+                    android:textSize="14sp"></EditText>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center">
+                    <Button
+                        android:layout_width="150dp"
+                        android:layout_height="50dp"
+                        android:id="@+id/accountCreateActBtn"
+                        android:text="@string/create_act"
+                        android:textColor="#000"></Button>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
