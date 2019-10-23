@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteQueryBuilder
 import com.bridgelabz.myfundooapp.Data.DatabaseHandler
 
+
 class NoteDataManager(context: Context) : INoteDataManager {
     companion object {
         val CREATE_NOTE_QUERY = "CREATE TABLE IF NOT EXISTS notes (ID integer PRIMARY KEY AUTOINCREMENT, " +
@@ -13,7 +14,6 @@ class NoteDataManager(context: Context) : INoteDataManager {
     }
 
     val handler = DatabaseHandler(context = context)
-    val sqlDB = handler.writableDatabase
 
 //    var sqlDB: SQLiteDatabase? = null
 //
@@ -41,9 +41,11 @@ class NoteDataManager(context: Context) : INoteDataManager {
 //        }
 //    }
 
-    override fun insert(values: ContentValues): Long {
-        val ID = sqlDB!!.insert("notes", "", values)
-        return ID
+    override fun insertNote(values: ContentValues) : Long {
+        val sqlDB = handler.openDB()
+        val id = sqlDB.insert("notes", null, values)
+        handler.close()
+        return id
     }
 
     override fun Query(
@@ -52,6 +54,7 @@ class NoteDataManager(context: Context) : INoteDataManager {
         selectionArgs: Array<String>,
         soOrder: String
     ): Cursor {
+        val sqlDB = handler.openDB()
         val qb = SQLiteQueryBuilder()
         qb.tables = "notes"
         val cursor = qb.query(sqlDB, projection, selection, selectionArgs, null, null, soOrder)
@@ -59,7 +62,9 @@ class NoteDataManager(context: Context) : INoteDataManager {
     }
 
     override fun delete(selection: String, selectionArgs: Array<String>): Int {
+        val sqlDB = handler.openDB()
         val count = sqlDB!!.delete("notes", selection, selectionArgs)
+        handler.closeDB()
         return count
     }
 
@@ -68,8 +73,26 @@ class NoteDataManager(context: Context) : INoteDataManager {
         selection: String,
         selectionArgs: Array<String>
     ): Int {
+        val sqlDB = handler.openDB()
         var count = sqlDB!!.update("notes", values, selection, selectionArgs)
+        handler.closeDB()
         return count
     }
+
+fun getList(){
+    val sqlDB = handler.openDB()
+    val cursor = sqlDB.rawQuery("select * from notes",null)
+    cursor.use {
+        while (it.moveToNext())
+        {
+            with(cursor){
+                val id = getInt(0)
+                val title = getString(1)
+                val description = getString(2)
+                val result = "Id : $id, title : $title, description : $description"
+            }
+        }
+    }
+}
 
 }

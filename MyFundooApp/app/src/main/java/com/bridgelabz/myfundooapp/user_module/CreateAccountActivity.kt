@@ -30,18 +30,21 @@ class CreateAccountActivity : AppCompatActivity() {
     internal lateinit var handler: UserDataManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        var usernameET = findViewById<TextView>(R.id.accountNameET)
+        var emailET = findViewById<TextView>(R.id.accountEmailET)
+        var passwordET = findViewById<TextView>(R.id.accountPasswordET)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
-
         handler = UserDataManager(this)
+
         var create = findViewById<Button>(R.id.accountCreateActBtn)
-        var login = findViewById<TextView>(R.id.loginTextLink)
         create.setOnClickListener {
             if (validateUsername() || validateEmail() || validatePassword()) {
                 handler.insertUserData(
-                    accountNameET.text.toString(),
-                    accountEmailET.text.toString(),
-                    accountPasswordET.text.toString()
+                    usernameET.text.toString(),
+                    emailET.text.toString(),
+                    passwordET.text.toString()
                 )
                 Log.d("CreateAccountActivity", "Data inseretd ")
                 Toast.makeText(this, "Account Created Successfully", Toast.LENGTH_LONG).show()
@@ -50,6 +53,7 @@ class CreateAccountActivity : AppCompatActivity() {
             }
         }
 
+        var login = findViewById<TextView>(R.id.loginTextLink)
         login.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
@@ -57,11 +61,13 @@ class CreateAccountActivity : AppCompatActivity() {
     }
 
     fun validateEmail(): Boolean {
-        if (TextUtils.isEmpty(accountEmailET.text.toString())) {
-            createAccountTextInputEmail.text = "Fields cant be empty."
+        var email = findViewById<TextView>(R.id.createAccountTextInputEmail)
+        var emailET = findViewById<TextView>(R.id.accountEmailET)
+        if (TextUtils.isEmpty(emailET.text.toString())) {
+            email.text = "Fields cant be empty."
             return false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(accountEmailET.text.toString()).matches()) {
-            createAccountTextInputEmail.text = "Please enter a valid email address."
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(emailET.text.toString()).matches()) {
+            email.text = "Please enter a valid email address."
             return false
         } else {
             return true
@@ -69,11 +75,13 @@ class CreateAccountActivity : AppCompatActivity() {
     }
 
     fun validatePassword(): Boolean {
-        if (TextUtils.isEmpty(accountPasswordET.text.toString())) {
-            createAccountTextInputPassword.text = "Fields cant be empty."
+        var password = findViewById<TextView>(R.id.createAccountTextInputPassword)
+        var passwordET = findViewById<TextView>(R.id.accountPasswordET)
+        if (TextUtils.isEmpty(passwordET.text.toString())) {
+            password.text = "Fields cant be empty."
             return false
-        } else if (!PASSWORD_PATTERN.matcher(accountPasswordET.text.toString()).matches()) {
-            createAccountTextInputPassword.text = "Password is too weak."
+        } else if (!PASSWORD_PATTERN.matcher(passwordET.text.toString()).matches()) {
+            password.text = "Password is too weak."
             return false
         } else {
             return true
@@ -81,11 +89,14 @@ class CreateAccountActivity : AppCompatActivity() {
     }
 
     fun validateUsername(): Boolean {
-        if (TextUtils.isEmpty(accountNameET.text.toString())) {
-            createAccountTextInputName.text = "Fields cant be empty."
+
+        var username = findViewById<TextView>(R.id.createAccountTextInputName)
+        var usernameET: TextView = findViewById(R.id.accountNameET)
+        if (TextUtils.isEmpty(usernameET.text.toString())) {
+            username.text = "Fields cant be empty."
             return false
-        } else if (accountNameET.text.toString().length > 15) {
-            createAccountTextInputName.text = "Name is too long"
+        } else if (usernameET.text.toString().length > 15) {
+            username.text = "Name is too long"
             return false
         } else {
             return true

@@ -15,8 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="3dp">
+            app:cardCornerRadius="5dp"
+            app:cardElevation="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,19 +42,32 @@
                     android:minHeight="100dp"
                     android:padding="10dp" />
 
+                <EditText
+                    android:id="@+id/datepicker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:gravity="top"
+                    android:hint="Date"
+                    android:minHeight="30dp"
+                    android:padding="10dp" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/addBtn"
-            android:text="Add"
-            android:layout_gravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
             android:gravity="center"
-            android:onClick="addFunc"/>
+            android:onClick="addFunc"
+            android:text="Add" />
+
+
     </LinearLayout>
 
 </ScrollView>

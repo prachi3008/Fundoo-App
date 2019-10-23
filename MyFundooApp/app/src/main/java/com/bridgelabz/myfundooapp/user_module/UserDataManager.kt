@@ -20,7 +20,7 @@ class UserDataManager(context: Context) : IUserDataManager {
             put("email", email)
             put("password", password)
         }
-        Log.d("insert data", "$values")
+        Log.d("insertNote data", "$values")
         db.insert("user", null, values)
         db.close()
     }

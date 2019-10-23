@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.bridgelabz.myfundooapp.DashboardActivity
 import com.bridgelabz.myfundooapp.R
-import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
@@ -28,20 +28,19 @@ class LoginActivity : AppCompatActivity() {
     )
 
     lateinit var handler: UserDataManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        var mailET = findViewById<EditText>(R.id.loginEmailET)
+        var passwordET = findViewById<EditText>(R.id.loginPasswordET)
 
         handler = UserDataManager(this)
 
         var login = findViewById<Button>(R.id.loginButtonId)
         login.setOnClickListener {
-            if (validateEmail() || validatePassword()) {
-                if (handler.isUserPresent(
-                        loginEmailET.text.toString(),
-                        loginPasswordET.text.toString()
-                    )
-                ) {
+            if (validateEmail() && validatePassword()) {
+                if (handler.isUserPresent(mailET.text.toString(), passwordET.text.toString())) {
                     Toast.makeText(this, "Login successfully", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, DashboardActivity::class.java)
                     startActivity(intent)
@@ -59,11 +58,13 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun validateEmail(): Boolean {
-        if (TextUtils.isEmpty(loginEmailET.text.toString())) {
-            loginTextInputEmail.text = "Fields cant be empty."
+        var mail = findViewById<TextView>(R.id.loginTextInputEmail)
+        var mailET = findViewById<EditText>(R.id.loginEmailET)
+        if (TextUtils.isEmpty(mailET.text.toString())) {
+            mail.text = "Fields cant be empty."
             return false
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(loginEmailET.text.toString()).matches()) {
-            loginTextInputEmail.text = "Please enter a valid email address."
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(mailET.text.toString()).matches()) {
+            mail.text = "Please enter a valid email address."
             return false
         } else {
             return true
@@ -72,11 +73,13 @@ class LoginActivity : AppCompatActivity() {
 
     fun validatePassword():Boolean
     {
-        if(TextUtils.isEmpty(loginPasswordET.text.toString())){
-            loginTextInputPassword.text = "Fields cant be empty."
+        var password = findViewById<TextView>(R.id.loginTextInputPassword)
+        var passwordET = findViewById<EditText>(R.id.loginPasswordET)
+        if(TextUtils.isEmpty(passwordET.text.toString())){
+            password.text = "Fields cant be empty."
             return false
-        }else if(!PASSWORD_PATTERN.matcher(loginPasswordET.text.toString()).matches()){
-            loginTextInputPassword.text = "Password is too weak."
+        }else if(!PASSWORD_PATTERN.matcher(passwordET.text.toString()).matches()){
+            password.text = "Password is too weak."
             return false
         }else{
             return true

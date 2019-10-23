@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 
 interface INoteDataManager {
-    fun insert(values: ContentValues): Long
+    fun insertNote(values: ContentValues): Long
     fun Query(
         projection: Array<String>,
         selection: String,

@@ -28,8 +28,16 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
+        <fragment
+            android:id="@+id/notes_container"
+            class="com.bridgelabz.myfundooapp.NotesFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <fragment
+            android:id="@+id/reminder_container"
+            class="com.bridgelabz.myfundooapp.ReminderFragment"
+            android:fragmentAllowEnterTransitionOverlap="@layout/fragment_reminder"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

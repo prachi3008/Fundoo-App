@@ -6,17 +6,17 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".launch_screen.LaunchActivity">
+    tools:context=".launch_screen.LaunchActivity"
+    android:background="@drawable/backlaunch">
 
     <ImageView
-        android:layout_width="509dp"
-        android:layout_height="842dp"
+        android:contentDescription="@string/welcome_text"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_gravity="center"
         android:adjustViewBounds="true"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/logo1"
+        android:src="@drawable/launchimg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
