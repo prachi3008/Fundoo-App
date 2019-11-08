@@ -1,10 +1,11 @@
-package com.bridgelabz.myfundooapp
+package com.bridgelabz.myfundooapp.note_module
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.bridgelabz.myfundooapp.R
 
 class ReminderFragment : Fragment() {
     override fun onCreateView(

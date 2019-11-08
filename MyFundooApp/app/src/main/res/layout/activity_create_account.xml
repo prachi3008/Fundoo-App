@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".user_module.CreateAccountActivity">
 
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="193dp"
@@ -21,7 +20,7 @@
         android:contentDescription="@string/welcome_text"/>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_create_heading"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:gravity="center"
@@ -43,10 +42,10 @@
         android:hint="@string/name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_create_heading"
         app:layout_constraintHorizontal_bias="0.453"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/tv_create_heading"
+        app:layout_constraintTop_toBottomOf="@+id/tv_create_heading"
         app:layout_constraintVertical_bias="0.022" />
 
     <TextView
@@ -55,25 +54,25 @@
         android:layout_height="24dp"
         android:textColor="#F00"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.138" />
+        app:layout_constraintEnd_toEndOf="@+id/accountNameET"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/accountNameET"
+        app:layout_constraintTop_toBottomOf="@+id/accountNameET"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/accountEmailET"
         android:layout_width="332dp"
         android:layout_height="45dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="32dp"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textColor="#1A1919"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintEnd_toEndOf="@+id/accountNameET"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/accountNameET"
+        app:layout_constraintTop_toBottomOf="@+id/accountNameET" />
 
     <TextView
         android:id="@+id/createAccountTextInputEmail"
@@ -81,11 +80,11 @@
         android:layout_height="24dp"
         android:textColor="#F00"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.598" />
+        app:layout_constraintEnd_toEndOf="@+id/accountEmailET"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/accountEmailET"
+        app:layout_constraintTop_toBottomOf="@+id/accountEmailET"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/accountPasswordET"
@@ -96,11 +95,11 @@
         android:textColor="#1A1919"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintEnd_toEndOf="@+id/accountEmailET"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/accountEmailET"
+        app:layout_constraintTop_toBottomOf="@+id/accountEmailET"
+        app:layout_constraintVertical_bias="0.123" />
 
     <TextView
         android:id="@+id/createAccountTextInputPassword"
@@ -108,11 +107,11 @@
         android:layout_height="24dp"
         android:textColor="#F00"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719" />
+        app:layout_constraintEnd_toEndOf="@+id/accountPasswordET"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/accountPasswordET"
+        app:layout_constraintTop_toBottomOf="@+id/accountPasswordET"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/accountCreateActBtn"
@@ -126,8 +125,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintTop_toBottomOf="@+id/createAccountTextInputPassword"
+        app:layout_constraintVertical_bias="0.218" />
 
     <TextView
         android:id="@+id/loginTextLink"
@@ -142,7 +141,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.842" />
+        app:layout_constraintTop_toBottomOf="@+id/accountCreateActBtn"
+        app:layout_constraintVertical_bias="0.316" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

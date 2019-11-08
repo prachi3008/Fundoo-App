@@ -1,5 +1,6 @@
 package com.bridgelabz.myfundooapp.user_module
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,9 +31,6 @@ class CreateAccountActivity : AppCompatActivity() {
     internal lateinit var handler: UserDataManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        var usernameET = findViewById<TextView>(R.id.accountNameET)
-        var emailET = findViewById<TextView>(R.id.accountEmailET)
-        var passwordET = findViewById<TextView>(R.id.accountPasswordET)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
@@ -42,9 +40,9 @@ class CreateAccountActivity : AppCompatActivity() {
         create.setOnClickListener {
             if (validateUsername() || validateEmail() || validatePassword()) {
                 handler.insertUserData(
-                    usernameET.text.toString(),
-                    emailET.text.toString(),
-                    passwordET.text.toString()
+                    accountNameET.text.toString(),
+                    accountEmailET.text.toString(),
+                    accountPasswordET.text.toString()
                 )
                 Log.d("CreateAccountActivity", "Data inseretd ")
                 Toast.makeText(this, "Account Created Successfully", Toast.LENGTH_LONG).show()

@@ -4,44 +4,22 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteQueryBuilder
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.bridgelabz.myfundooapp.Data.DatabaseHandler
+import kotlin.collections.ArrayList
 
 
 class NoteDataManager(context: Context) : INoteDataManager {
     companion object {
-        val CREATE_NOTE_QUERY = "CREATE TABLE IF NOT EXISTS notes (ID integer PRIMARY KEY AUTOINCREMENT, " +
-                "Title varchar(30),Description varchar (100))";
+        val CREATE_NOTE_QUERY =
+            "CREATE TABLE IF NOT EXISTS notes (ID integer PRIMARY KEY AUTOINCREMENT, " +
+                    "Title varchar(30),Description varchar (100),Date varchar (50),Flag boolean, Color integer)";
     }
 
-    val handler = DatabaseHandler(context = context)
+    val handler = DatabaseHandler(context)
 
-//    var sqlDB: SQLiteDatabase? = null
-//
-//    constructor(context: Context) {
-//        var db = DatabaseHandler(context)
-//        sqlDB = db.writableDatabase
-//    }
-
-//    inner class DatabaseHelperNotes : SQLiteOpenHelper {
-//        var context: Context? = null
-//
-//        constructor(context: Context) : super(context, dbName, null, dbVersion) {
-//            this.context = context
-//            val databaseHandler = DatabaseHandler(context)
-//            sqlDB = databaseHandler.writableDatabase
-//        }
-//
-//        override fun onCreate(db: SQLiteDatabase?) {
-//            db!!.execSQL(sqlCreateTable)
-//            Toast.makeText(this.context, "Database created...", Toast.LENGTH_SHORT).show()
-//        }
-//
-//        override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-//            db!!.execSQL("DROP TABLE IF EXISTS" + dbTable)
-//        }
-//    }
-
-    override fun insertNote(values: ContentValues) : Long {
+    override fun insertNote(values: ContentValues): Long {
         val sqlDB = handler.openDB()
         val id = sqlDB.insert("notes", null, values)
         handler.close()
@@ -74,25 +52,33 @@ class NoteDataManager(context: Context) : INoteDataManager {
         selectionArgs: Array<String>
     ): Int {
         val sqlDB = handler.openDB()
-        var count = sqlDB!!.update("notes", values, selection, selectionArgs)
+        val count = sqlDB!!.update("notes", values, selection, selectionArgs)
         handler.closeDB()
         return count
     }
 
-fun getList(){
-    val sqlDB = handler.openDB()
-    val cursor = sqlDB.rawQuery("select * from notes",null)
-    cursor.use {
-        while (it.moveToNext())
-        {
-            with(cursor){
-                val id = getInt(0)
-                val title = getString(1)
-                val description = getString(2)
-                val result = "Id : $id, title : $title, description : $description"
+    fun getList(): LiveData<List<Note>> {
+        val mutableLiveData = MutableLiveData<List<Note>>()
+
+        val sqlDB = handler.openDB()
+        val cursor = sqlDB.rawQuery("select * from notes", null)
+        cursor.use {
+            while (it.moveToNext()) {
+                with(cursor) {
+                    val id = getInt(0)
+                    val title = getString(1)
+                    val description = getString(2)
+                    val date = getString(3)
+                    val color = getInt(4)
+                    //val result = "Id : $id, title : $title, description : $description"
+                    val noteList: ArrayList<Note> = arrayListOf(
+                        Note(id, title, description,date,color)
+                    )
+                    mutableLiveData.value = noteList
+                }
             }
         }
+        return mutableLiveData
     }
-}
 
 }

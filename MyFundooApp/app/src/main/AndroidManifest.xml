@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <activity android:name=".note_module.AddNoteActivity"
             android:parentActivityName=".DashboardActivity"
-            android:label="Add note"></activity>
+            android:label="Add note"/>
         <activity
             android:name=".launch_screen.LaunchActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -22,12 +24,9 @@
         </activity>
         <activity android:name=".user_module.CreateAccountActivity" />
         <activity android:name=".user_module.LoginActivity" />
-        <activity android:name=".user_module.MainActivity">
-        </activity>
-        <activity
-            android:name=".DashboardActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+        <activity android:name=".user_module.MainActivity"/>
+        <activity android:name=".DashboardActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 
 </manifest>

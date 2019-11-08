@@ -29,8 +29,10 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:hint="Enter Title"
+                    android:inputType="textMultiLine|text"
                     android:padding="10dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:ignore="Autofill" />
 
                 <EditText
                     android:id="@+id/addNoteDescET"
@@ -38,9 +40,11 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:gravity="top"
+                    android:inputType="textMultiLine|text"
                     android:hint="Enter Description"
                     android:minHeight="100dp"
-                    android:padding="10dp" />
+                    android:padding="10dp"
+                    android:singleLine="true" />
 
                 <EditText
                     android:id="@+id/datepicker"
@@ -48,11 +52,18 @@
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:clickable="true"
-                    android:focusable="false"
                     android:gravity="top"
                     android:hint="Date"
                     android:minHeight="30dp"
                     android:padding="10dp" />
+
+                <com.thebluealliance.spectrum.SpectrumPalette
+                    android:id="@+id/palette"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:spectrum_colors="@array/demo_colors"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -66,7 +77,6 @@
             android:gravity="center"
             android:onClick="addFunc"
             android:text="Add" />
-
 
     </LinearLayout>
 

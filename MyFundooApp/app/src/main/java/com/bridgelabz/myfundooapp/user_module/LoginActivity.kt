@@ -1,5 +1,6 @@
 package com.bridgelabz.myfundooapp.user_module
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +12,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bridgelabz.myfundooapp.DashboardActivity
 import com.bridgelabz.myfundooapp.R
+import kotlinx.android.synthetic.main.activity_create_account.*
+import kotlinx.android.synthetic.main.activity_login.*
 import java.util.regex.Pattern
 
 class LoginActivity : AppCompatActivity() {
@@ -29,20 +32,31 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var handler: UserDataManager
 
+    private fun sharedPref() {
+        var token = getSharedPreferences("userEmail", Context.MODE_PRIVATE)
+        var userEmail = loginEmailET.text.toString()
+        var editor = token.edit()
+        editor.putString("userEmail", userEmail)
+        editor.commit()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         var mailET = findViewById<EditText>(R.id.loginEmailET)
         var passwordET = findViewById<EditText>(R.id.loginPasswordET)
-
+        var login = findViewById<Button>(R.id.loginButtonId)
         handler = UserDataManager(this)
 
-        var login = findViewById<Button>(R.id.loginButtonId)
         login.setOnClickListener {
+            var userEmail = loginEmailET.text.toString()
             if (validateEmail() && validatePassword()) {
                 if (handler.isUserPresent(mailET.text.toString(), passwordET.text.toString())) {
                     Toast.makeText(this, "Login successfully", Toast.LENGTH_LONG).show()
+
                     val intent = Intent(this, DashboardActivity::class.java)
+                    intent.putExtra("userEmail", userEmail)
+                    sharedPref()
                     startActivity(intent)
                 } else {
                     Toast.makeText(this, "Invalid user", Toast.LENGTH_LONG).show()
@@ -71,17 +85,16 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun validatePassword():Boolean
-    {
+    fun validatePassword(): Boolean {
         var password = findViewById<TextView>(R.id.loginTextInputPassword)
         var passwordET = findViewById<EditText>(R.id.loginPasswordET)
-        if(TextUtils.isEmpty(passwordET.text.toString())){
+        if (TextUtils.isEmpty(passwordET.text.toString())) {
             password.text = "Fields cant be empty."
             return false
-        }else if(!PASSWORD_PATTERN.matcher(passwordET.text.toString()).matches()){
+        } else if (!PASSWORD_PATTERN.matcher(passwordET.text.toString()).matches()) {
             password.text = "Password is too weak."
             return false
-        }else{
+        } else {
             return true
         }
     }

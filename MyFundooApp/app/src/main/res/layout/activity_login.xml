@@ -18,12 +18,13 @@
         app:layout_constraintVertical_bias="0.113"
         app:srcCompat="@drawable/keepicon" />
 
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_create_heading"
         android:layout_width="136dp"
         android:layout_height="35dp"
-        android:text="@string/login"
         android:gravity="center"
+        android:text="@string/login"
         android:textColor="#252222"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -32,14 +33,13 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.133" />
-
+        app:layout_constraintVertical_bias="0.058" />
 
     <EditText
         android:id="@+id/loginEmailET"
         android:layout_width="332dp"
         android:layout_height="45dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:textColor="#1A1919"
@@ -47,7 +47,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"/>
+        app:layout_constraintTop_toBottomOf="@+id/tv_create_heading" />
 
     <TextView
         android:id="@+id/loginTextInputEmail"
@@ -55,25 +55,25 @@
         android:layout_height="24dp"
         android:textColor="#F00"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintEnd_toEndOf="@+id/loginEmailET"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/loginEmailET"
+        app:layout_constraintTop_toBottomOf="@+id/loginEmailET"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/loginPasswordET"
         android:layout_width="332dp"
         android:layout_height="45dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="20dp"
         android:hint="@string/password"
-        android:textColor="#1A1919"
         android:inputType="textPassword"
+        android:textColor="#1A1919"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmailET" />
+        app:layout_constraintEnd_toEndOf="@+id/loginEmailET"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/loginEmailET"
+        app:layout_constraintTop_toBottomOf="@+id/loginTextInputEmail" />
 
     <TextView
         android:id="@+id/loginTextInputPassword"
@@ -81,11 +81,11 @@
         android:layout_height="24dp"
         android:textColor="#F00"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.768" />
+        app:layout_constraintEnd_toEndOf="@+id/loginPasswordET"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/loginPasswordET"
+        app:layout_constraintTop_toBottomOf="@+id/loginPasswordET"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/loginButtonId"
@@ -95,12 +95,12 @@
         android:text="@string/login"
         android:textColor="#1A1919"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/createAccountTextLink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.859" />
+        app:layout_constraintTop_toBottomOf="@+id/loginPasswordET"
+        app:layout_constraintVertical_bias="0.445" />
 
     <TextView
         android:id="@+id/createAccountTextLink"
@@ -112,10 +112,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.932" />
+        app:layout_constraintTop_toBottomOf="@+id/loginTextInputPassword"
+        app:layout_constraintVertical_bias="0.624" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
