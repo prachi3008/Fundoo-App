@@ -52,14 +52,14 @@
                 android:layout_marginRight="5dp"
                 android:background="@null" />
 
-            <ImageButton
-                android:id="@+id/deleteBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@null"
-                android:src="@drawable/ic_action_delete" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/deleteBtn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginEnd="5dp"-->
+<!--                android:layout_marginRight="5dp"-->
+<!--                android:background="@null"-->
+<!--                android:src="@drawable/ic_action_delete" />-->
 
             <ImageButton
                 android:id="@+id/editBtn"

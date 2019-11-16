@@ -13,11 +13,10 @@
             android:id="@+id/nav_reminders"
             android:icon="@drawable/ic_menu_notifications"
             android:title="@string/navigation_drawer_reminders" />
-
         <item
-            android:id="@+id/nav_create_new_label"
-            android:icon="@drawable/ic_menu_add"
-            android:title="@string/navigation_drawer_create_new_model" />
+            android:id="@+id/nav_important"
+            android:icon="@drawable/ic_star_black_24dp"
+            android:title="Important"/>
 
         <item
             android:id="@+id/nav_archive"
@@ -37,6 +36,11 @@
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_menu_help"
             android:title="@string/navigation_drawer_help"/>
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_action_logout"
+            android:title="Logout"/>
     </group>
 
 </menu>

@@ -6,23 +6,26 @@
     android:background="@color/colorAccent"
     android:gravity="bottom"
     android:padding="16dp"
+
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
+        android:id="@+id/drawerPhoto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round"/>
+        android:src="@mipmap/ic_launcher_round"
+        android:paddingBottom="10dp"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/drawerUsername"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:paddingTop="8dp"-->
-<!--        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>-->
+    <TextView
+        android:id="@+id/drawerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"/>
 
     <TextView
         android:id="@+id/drawerEmail"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"/>
 
 </LinearLayout>

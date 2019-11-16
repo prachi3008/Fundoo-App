@@ -6,18 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".user_module.LoginActivity">
 
+
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="193dp"
-        android:layout_height="175dp"
+        android:layout_width="123dp"
+        android:layout_height="111dp"
         android:cropToPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.113"
+        app:layout_constraintVertical_bias="0.028"
         app:srcCompat="@drawable/keepicon" />
-
 
     <TextView
         android:id="@+id/tv_create_heading"
@@ -33,7 +33,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.015" />
 
     <EditText
         android:id="@+id/loginEmailET"
@@ -100,7 +100,32 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginPasswordET"
-        app:layout_constraintVertical_bias="0.445" />
+        app:layout_constraintVertical_bias="0.162" />
+
+    <Button
+        android:id="@+id/googleSignIn"
+        android:layout_width="234dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:text="Google SignIn"
+        app:layout_constraintBottom_toTopOf="@+id/createAccountTextLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButtonId"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/fb_login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/createAccountTextLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/googleSignIn"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/createAccountTextLink"
@@ -112,9 +137,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginTextInputPassword"
-        app:layout_constraintVertical_bias="0.624" />
+        app:layout_constraintVertical_bias="0.862" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

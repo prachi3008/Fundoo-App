@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "8690181821",
-    "firebase_url": "https://myfundooapp.firebaseio.com",
-    "project_id": "myfundooapp",
-    "storage_bucket": "myfundooapp.appspot.com"
+    "project_number": "407326752979",
+    "firebase_url": "https://myfundooapp-1573634643228.firebaseio.com",
+    "project_id": "myfundooapp-1573634643228",
+    "storage_bucket": "myfundooapp-1573634643228.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:8690181821:android:61f4afc988c06d432939d4",
+        "mobilesdk_app_id": "1:407326752979:android:328125e4fc8ce119cc1426",
         "android_client_info": {
           "package_name": "com.bridgelabz.myfundooapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "8690181821-tqlbpgues5u63j48073o702fet1l1m05.apps.googleusercontent.com",
+          "client_id": "407326752979-eikk4mcgqu15ptpuh4u9a4m2pr207fp7.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.bridgelabz.myfundooapp",
@@ -23,20 +23,20 @@
           }
         },
         {
-          "client_id": "8690181821-ekn3uqp6c78obol9anf8vcsgj7veld32.apps.googleusercontent.com",
+          "client_id": "407326752979-d2t3tk4scomcslrstvjotskqh0icq3l7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB0vYeOIKN0oyRqkPnh5aIBqXcPsH9uCRo"
+          "current_key": "AIzaSyBwvpAYDwwsTr5TXII756RJSbO6SJJMcwE"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "8690181821-ekn3uqp6c78obol9anf8vcsgj7veld32.apps.googleusercontent.com",
+              "client_id": "407326752979-d2t3tk4scomcslrstvjotskqh0icq3l7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

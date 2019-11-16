@@ -16,9 +16,10 @@ class NoteViewHolder : RecyclerView.ViewHolder, View.OnTouchListener,
     var noteItemViewTitle: TextView
     var noteItemViewDesciption: TextView
     var noteItemViewDate : TextView
+
     var gestureDetector: GestureDetector
     var showDate : TextView
-    var deleteBtn: ImageButton
+   // var deleteBtn: ImageButton
     var editBtn: ImageButton
     var copyBtn: ImageButton
     var shareBtn: ImageButton
@@ -37,7 +38,7 @@ class NoteViewHolder : RecyclerView.ViewHolder, View.OnTouchListener,
         this.onNoteListener = onNoteListener
         //this.itemTouchHelper = ItemTouchHelper()
         showDate = itemView.showDate
-        deleteBtn = itemView.deleteBtn
+        //deleteBtn = itemView.deleteBtn
         editBtn = itemView.editBtn
         copyBtn = itemView.copyBtn
         shareBtn = itemView.shareBtn

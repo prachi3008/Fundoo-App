@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bridgelabz.myfundooapp.R
 
 
-class ListAdapter : RecyclerView.Adapter<NoteViewHolder>, Filterable {
+class ListAdapter : RecyclerView.Adapter<NoteViewHolder> {
 
     private var notes = mutableListOf<Note>() // Cached copy of notes
-    private var notesFull = mutableListOf<Note>()
+    // private var notesFull = mutableListOf<Note>()
     private var context: Context
     private var onNoteListener: OnNoteListener
 
@@ -38,7 +38,10 @@ class ListAdapter : RecyclerView.Adapter<NoteViewHolder>, Filterable {
             R.layout.row,
             parent, false
         )
-        return NoteViewHolder(itemView, onNoteListener)
+        return NoteViewHolder(
+            itemView = itemView,
+            onNoteListener = onNoteListener
+        )
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
@@ -48,31 +51,35 @@ class ListAdapter : RecyclerView.Adapter<NoteViewHolder>, Filterable {
         holder.noteItemViewDate.text = current.nodeDate
         holder.cardView.setCardBackgroundColor(current.nodeColor)
 
-        holder.deleteBtn.setOnClickListener {
-            val title = current.nodeTitle
-            val alertDialog = AlertDialog.Builder(context)
-                .setTitle("warning")
-                .setMessage("Are you sure you want to delete $title?")
-                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
-                    val dbManager = NoteDataManager(this.context!!)
-                    val selectionArgs = arrayOf(current.nodeId.toString())
-                    dbManager.delete("ID=?", selectionArgs)
-                    LoadQuery("%")
-                    if (dbManager.delete("ID=?", selectionArgs) == 0) {
-                        notes.removeAt(position)
-                        notifyItemRemoved(position)
-                        notifyItemRangeChanged(position, notes.size)
-                        Toast.makeText(context, "Title $title is deleted", Toast.LENGTH_SHORT)
-                            .show()
-                    } else {
-                        Toast.makeText(context, "Error while deleting", Toast.LENGTH_SHORT)
-                            .show()
-                    }
-                })
-                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which -> })
-                .setIcon(R.drawable.ic_action_warning)
-                .show()
-        }
+//        holder.deleteBtn.setOnClickListener {
+//            isDeleted = true
+//
+//            val title = current.nodeTitle
+//            val alertDialog = AlertDialog.Builder(context)
+//                .setTitle("warning")
+//                .setMessage("Are you sure you want to delete $title?")
+//                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+//
+//                    val dbManager = NoteDataManager(this.context)
+//                    val selectionArgs = arrayOf(current.nodeId.toString())
+//                    dbManager.delete("ID=?", selectionArgs)
+//                    dbManager.LoadQuery("%")
+//                    if (dbManager.delete("ID=?", selectionArgs) == 0) {
+//                        notes.removeAt(position)
+//                        notifyItemRemoved(position)
+//                        //notifyDataSetChanged()
+//                        //notifyItemRangeChanged(position, notes.size)
+//                        Toast.makeText(context, "Title $title is deleted", Toast.LENGTH_SHORT)
+//                            .show()
+//                    } else {
+//                        Toast.makeText(context, "Error while deleting", Toast.LENGTH_SHORT)
+//                            .show()
+//                    }
+//                })
+//                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which -> })
+//                .setIcon(R.drawable.ic_action_warning)
+//                .show()
+//        }
 
         holder.editBtn.setOnClickListener {
             GoToUpdateFunction(current)
@@ -94,7 +101,7 @@ class ListAdapter : RecyclerView.Adapter<NoteViewHolder>, Filterable {
         }
 
         holder.copyBtn.setOnClickListener {
-            var clipboardManager: ClipboardManager? = null
+            val clipboardManager: ClipboardManager? = null
             //get title
             val title = holder.noteItemViewTitle.text.trim()
             //get desciption
@@ -110,70 +117,48 @@ class ListAdapter : RecyclerView.Adapter<NoteViewHolder>, Filterable {
 
     override fun getItemCount() = notes.size
 
-    fun LoadQuery(title: String) {
-        var dbManager = NoteDataManager(context!!)
-        val projections = arrayOf("ID", "Title", "Description", "Date","Color")
-        val selectionArgs = arrayOf(title)
-        val cursor = dbManager.Query(
-            projections, "Title like ?", selectionArgs,
-            "Title"
-        )
-        notes.clear()
-        if (cursor.moveToFirst()) {
-            do {
-                var ID = cursor.getInt(cursor.getColumnIndex("ID"))
-                var Title = cursor.getString(cursor.getColumnIndex("Title"))
-                var Description = cursor.getString(cursor.getColumnIndex("Description"))
-                var Date = cursor.getString(cursor.getColumnIndex("Date"))
-                var Color = cursor.getInt(cursor.getColumnIndex("Color"))
-                notes.add(Note(ID, Title, Description, Date, Color))
-                //notesFull.add(Note(ID, Title, Description, Date))
-            } while (cursor.moveToNext())
-        }
-    }
-
     private fun GoToUpdateFunction(notes: Note) {
         var intent = Intent(context, AddNoteActivity::class.java)
         intent.putExtra("ID", notes.nodeId) //put id
         intent.putExtra("Title", notes.nodeTitle) //put title
         intent.putExtra("Description", notes.nodeDesc) //put description
-        intent.putExtra("Date", notes.nodeDate)
+        intent.putExtra("Date", notes.nodeDate) //put date
         startActivity(context, intent, Bundle())
     }
 
-    private val exampleFilter = object : Filter() {
-        override fun performFiltering(constraint: CharSequence?): FilterResults {
-            val filteredList = mutableListOf<Note>()
-            val results = FilterResults()
-            if (constraint == null || constraint.isEmpty()) {
-                filteredList.addAll(notesFull)
-                results.values = filteredList
-                return results
-            }
-            filterList(constraint, filteredList)
-            results.values = filteredList
-            return results
-        }
+//    private val exampleFilter = object : Filter() {
+//        override fun performFiltering(constraint: CharSequence?): FilterResults {
+//            val filteredList = mutableListOf<Note>()
+//            val results = FilterResults()
+//            if (constraint == null || constraint.isEmpty()) {
+//                filteredList.addAll(notesFull)
+//                results.values = filteredList
+//                return results
+//            }
+//            filterList(constraint, filteredList)
+//            results.values = filteredList
+//            return results
+//        }
+//
+//        override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+//            notes.clear()
+//            notes.addAll(results!!.values as List<Note>)
+//            notifyDataSetChanged()
+//        }
+//    }
 
-        override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-            notes.clear()
-            notes.addAll(results!!.values as List<Note>)
-            notifyDataSetChanged()
-        }
-    }
-
-    private fun filterList(constraint: CharSequence, filteredList: MutableList<Note>) {
-        val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
-
-        for (item in notesFull) {
-            if (item.nodeTitle.toLowerCase().contains(filterPattern)) {
-                filteredList.add(item)
-            }
-        }
-    }
-
-    override fun getFilter(): Filter {
-        return exampleFilter
-    }
+//    private fun filterList(constraint: CharSequence, filteredList: MutableList<Note>) {
+//        val filterPattern = constraint.toString().toLowerCase().trim { it <= ' ' }
+//
+//        for (item in notesFull) {
+//            if (item.nodeTitle.toLowerCase().contains(filterPattern)) {
+//                filteredList.add(item)
+//            }
+//        }
+//    }
+//
+//    override fun getFilter(): Filter {
+//        return exampleFilter
+//    }
 }
 

@@ -13,6 +13,13 @@ import java.util.*
 
 class NotesFragment : Fragment(), OnNoteListener, ItemTouchHelperAdapter {
 
+    val position: Int
+    init {
+        position = nextPosition++
+    }
+    companion object {
+        var nextPosition = 0
+    }
     var listNotes = mutableListOf<Note>()
     var mrecyleView: RecyclerView? = null
     var listAdapter: ListAdapter? = null
@@ -34,7 +41,7 @@ class NotesFragment : Fragment(), OnNoteListener, ItemTouchHelperAdapter {
     }
 
     private fun findViews(rootView: View) {
-        mrecyleView = rootView.findViewById<RecyclerView>(R.id.recyclerview)
+        mrecyleView = rootView.findViewById<RecyclerView>(R.id.recyclerviewNotes)
     }
 
     fun initRecyclerView() {
@@ -59,11 +66,14 @@ class NotesFragment : Fragment(), OnNoteListener, ItemTouchHelperAdapter {
 
     fun LoadQuery(title: String) {
         val dbManager = NoteDataManager(context!!)
-        val projections = arrayOf("ID", "Title", "Description", "Date","Color")
+        val projections = arrayOf(
+            "ID", "Title", "Description", "Date", "Color", "Reminder",
+            "Archieve", "Important", "Remove", "Position"
+        )
         val selectionArgs = arrayOf(title)
         val cursor = dbManager.Query(
             projections, "Title like ?", selectionArgs,
-            "Title"
+            "ID"
         )
         listNotes.clear()
         if (cursor.moveToFirst()) {
@@ -72,8 +82,27 @@ class NotesFragment : Fragment(), OnNoteListener, ItemTouchHelperAdapter {
                 val Title = cursor.getString(cursor.getColumnIndex("Title"))
                 val Description = cursor.getString(cursor.getColumnIndex("Description"))
                 val Date = cursor.getString(cursor.getColumnIndex("Date"))
-                var Color = cursor.getInt(cursor.getColumnIndex("Color"))
-                listNotes.add(Note(ID, Title, Description, Date,Color))
+                val Color = cursor.getInt(cursor.getColumnIndex("Color"))
+                val Reminder = cursor.getString(cursor.getColumnIndex("Reminder")).equals("false")
+                val Archieve = cursor.getInt(cursor.getColumnIndex("Archieve")) == 1
+                val Important = cursor.getInt(cursor.getColumnIndex("Important")) == 1
+                val Remove = cursor.getInt(cursor.getColumnIndex("Remove")) == 1
+                val Position = cursor.getInt(cursor.getColumnIndex("Position"))
+                if(Archieve == false && Remove == false){
+                listNotes.add(
+                    Note(
+                        ID,
+                        Title,
+                        Description,
+                        Date,
+                        Color,
+                        Reminder,
+                        Archieve,
+                        Important,
+                        Remove,
+                        Position
+                    )
+                )}
             } while (cursor.moveToNext())
         }
         initRecyclerView()
@@ -81,7 +110,7 @@ class NotesFragment : Fragment(), OnNoteListener, ItemTouchHelperAdapter {
 
     override fun onNoteClick(position: Int) {
         val intent = Intent(context, AddNoteActivity::class.java)
-        //intent.putExtra("selected_note", (listNotes[position]))
+        //intent.putExtra("selected_note", (listNotes<Note>(position)))
         startActivity(intent)
     }
 }
